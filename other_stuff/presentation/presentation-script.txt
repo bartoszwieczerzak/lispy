@@ -1,0 +1,88 @@
+Notes for presentation - LISPY:
+
+* What is a programming language?
+- structure
+- rules (what is and what isn't valid to say)
+
+- natural languages are build up on recursive and repeaded substructures
+- Pies chodzi po dywanie
+- Pies i kot chodzi po dywanie
+- Pies i kot i mysz chodzi po dywanie
+- Czarny pies i biały kot chodzi po dywanie
+
+- if (x>5) { return x; }
+- if (x>5) { if (x>10) { return x; } }
+
+**** What is grammar
+Grammar - set or rewrite rules - this means that there is infinite number of different things that we can say or written down, but we can process them all with finite number of re-write rules.
+
+Grammar can be described in words: "a sentence must be a verb phrase", or "a verb phrase can be either a verb or, an adverb and a verb"
+but computers need more formal description of grammar.
+
+**** Describing a grammar formaly
+- Parser:
+A parser is a software component that takes input data (frequently text) and builds a data structure – often some kind of parse tree, abstract syntax tree
+or other hierarchical structure, giving a structural representation of the input while checking for correct syntax
+
+A parse tree or parsing tree[1] or derivation tree or concrete syntax tree is an ordered, rooted tree that represents the syntactic structure of a string according to some context-free grammar.
+
+- Parser Combinator:
+In computer programming, a parser combinator is a higher-order function that accepts several parsers as input and returns a new parser as its output.
+
+**** Writing your own grammar!
+Shiba Inu Grammar
+- PRZYMIOTNIK jest jednym z "wow", "many", "so" or "such".
+- RZECZOWNIK jednym z "lisp", "language", "c", "book" or "build".
+- FRAZA to PRZYMIOTNIK po którym występuje RZECZOWNIK.
+- PIESEŁ to zero lub więcej FRAZ.
+
+Poprawne przykłady w języku pieseła:
+"wow book such language many lisp"
+"so c such build such language"
+"many build wow c"
+""
+"wow lisp wow c many language"
+"so c"
+
+Gramatyka naturalna:
+
+  "                                           \
+    adjective : \"wow\" | \"many\"            \
+              |  \"so\" | \"such\";           \
+    noun      : \"lisp\" | \"language\"       \
+              | \"book\" | \"build\" | \"c\"; \
+    phrase    : <adjective> <noun>;           \
+    doge      : <phrase>*;                    \
+  "
+
+
+**** Lisp - all computations are represented by lists
+
+**** Interactive prompt - REPL (Read, Evaluate, Print Loop)
+
+**** Parsing - Polish Notation (https://en.wikipedia.org/wiki/Polish_notation)
+1+2+6 -> + 1 2 6
+6+(2*9) -> + 6 (* 2 9)
+(10 * 2) / (4 + 2) -> / (* 10 2) (+ 4 2)
+
+"a program is an operator followed by one or more expressions," where "an expression is either a number, or, in parentheses, an operator followed by one or more expressions"
+Formaly:
+Program	the start of input, an Operator, one or more Expression, and the end of input.
+Expression	either a Number or '(', an Operator, one or more Expression, and an ')'.
+Operator	'+', '-', '*', or '/'.
+Number	an optional -, and one or more characters between 0 and 9
+
+
+* Regular expressions
+
+.	Any character is required.
+a	The character a is required.
+[abcdef]	Any character in the set abcdef is required.
+[a-f]	Any character in the range a to f is required.
+a?	The character a is optional.
+a*	Zero or more of the character a are required.
+a+	One or more of the character a are required.
+^	The start of input is required.
+$	The end of input is required.
+
+**** Evaluation (AST - Abstract Syntax Tree)
